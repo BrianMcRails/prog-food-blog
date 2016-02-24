@@ -1,0 +1,111 @@
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<%= render 'header' %>
+		<!--=== End Header ===-->
+
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">Blog Item 2</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="">Blog</a></li>
+					<li class="active">Blog Item 2</li>
+				</ul>
+			</div>
+		</div><!--/breadcrumbs-->
+		<!--=== End Breadcrumbs ===-->
+
+		<!--=== Content Part ===-->
+		<div class="container content blog-page blog-item">
+			<p id="notice"><%= notice %></p>
+			<!--Blog Post-->
+			<div class="blog margin-bottom-40">
+				<div class="blog-img">
+					<img class="img-responsive" src="assets/img/sliders/4.jpg" alt="">
+				</div>
+				<h2><%= link_to (@post.title), post_path(@post) %></h2>
+				<div class="blog-post-tags">
+					<ul class="list-unstyled list-inline blog-info">
+						<li><i class="fa fa-calendar"></i><%= time_ago_in_words @post.created_at %></li>
+						<li><i class="fa fa-pencil"></i><%= @post.user.email %></li>
+						<li><i class="fa fa-comments"></i> <a href="#">24 Comments</a></li>
+						<li><%= link_to 'Edit', edit_post_path(@post) %></li>
+						<li><%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %></li>
+						<li><%= link_to 'Home', posts_path %></li>
+					</ul>
+				</div>
+				<p><%= @post.content %></p><br>
+<!-- Extra formatting available for posts
+				<div class="tag-box tag-box-v2">
+					<p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet consectetur adipiscing elit. Fusce condimentum eleifend enim a feugiatt non libero consectetur adipiscing elit magna. Sed et quam lacus. Condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
+				</div>
+				<p>Officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend.</p>
+				<p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum</p><br>
+				<blockquote>
+					<p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why.</p>
+					<small>CEO Jack Bour</small>
+				</blockquote>
+				<p>Deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus.</p>
+			</div>
+-->
+			<!--End Blog Post-->
+
+			<hr>
+
+			<!-- Recent Comments -->
+			<div class="media">
+				<h3>Comments</h3>
+			</div>
+			<% if @post.comments %>
+			<% @post.comments.each do |comment| %>
+			<div class="media">
+				<a class="pull-left" href="#">
+					<img class="media-object" src="assets/img/testimonials/img4.jpg" alt="" />
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading"><%= comment.user.email %><span><%= time_ago_in_words comment.created_at %></span></h4>
+					<p><%= comment.content %></p>
+				</div>
+			</div><!--/media-->
+			<% end %>
+			<% end %>
+			<!-- End Recent Comments -->
+
+			<hr>
+			<% unless user_signed_in? %>
+			<div class="post-comment">
+				<h3>Sign in to comment</h3>
+			</div>
+			<% else %>
+			<!-- Comment Form -->
+			<div class="post-comment">
+				<h3>Leave a Comment</h3>
+				<%= form_for [@post, @post.comments.new] do |f| %>
+				<%= f.text_field :content, placeholder: "Add a comment..." %>
+				<% end %>
+			</div>
+			<% end %>
+			<!-- End Comment Form -->
+		</div><!--/container-->
+		<!--=== End Content Part ===-->
+
+
+	</div><!--/wrapper-->
+			<!--=== Footer Version 1 ===-->
+		<%= render 'footer' %>
+		<!--=== End Footer Version 1 ===-->
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.js"></script>
+		<script src="assets/plugins/html5shiv.js"></script>
+		<script src="assets/plugins/placeholder-IE-fixes.js"></script>
+		<![endif]-->
+
+
