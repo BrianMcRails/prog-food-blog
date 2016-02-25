@@ -5,11 +5,11 @@
     <!--=== Breadcrumbs ===-->
     <div class="breadcrumbs">
         <div class="container">
-            <h1 class="pull-left">Blog Full Width</h1>
+            <h1 class="pull-left">BringBackBmac Blog-mo-tron</h1>
             <ul class="pull-right breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="">Blog</a></li>
-                <li class="active">Blog Full Width</li>
+                <li><%= link_to 'Home', root_path %></li>
+                <li><%= link_to 'About', root_path %></li>
+                <li><%= link_to 'Contact', root_path %></li>
             </ul>
         </div>
     </div><!--/breadcrumbs-->
@@ -22,7 +22,7 @@
         <!--Blog Post-->
       <div class="blog margin-bottom-40">
             <div class="blog-img">
-                <img class="img-responsive" src="assets/img/sliders/4.jpg" alt="">
+                <img class="img-responsive" src=<%= post.image %> alt="">
             </div>
           <h2><%= link_to (post.title), post_path(post) %></h2>
             <div class="blog-post-tags">

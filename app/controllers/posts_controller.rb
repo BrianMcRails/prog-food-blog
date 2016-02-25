@@ -16,7 +16,12 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    unless current_user.email=="brian.mcauley.rails@gmail.com"
+      flash[:alert]="You are not the admin."
+      redirect_to root_path
+    else
     @post = current_user.posts.build
+    end
   end
 
   # GET /posts/1/edit
@@ -71,7 +76,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :image)
     end
 
     def owned_post
